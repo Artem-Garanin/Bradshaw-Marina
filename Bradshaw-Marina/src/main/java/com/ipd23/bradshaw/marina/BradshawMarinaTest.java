@@ -25,19 +25,24 @@ public class BradshawMarinaTest {
 //             + newCustomer.getAddress() + " Phone: " + newCustomer.getPhoneNo());
         
         //Test Slip.java
-//         Slip newSlip = new Slip();
+         //Slip newSlip = new Slip();
 //        newSlip.setDockID(1);
 //        newSlip.setSlipID(7);
 //        newSlip.setWidth(100);
 //        newSlip.setSlipLength(400);
 //        newSlip.setCustomerPhoneNo("514-916-3288");
 //        Slip.save(newSlip);
-//        Slip.remove(6);
+          Slip.remove(4);
 //        newSlip = Slip.getSlip(1);
 //        System.out.println("Dock ID: " + newSlip.getDockID() + " SlipID: " 
 //            + newSlip.getSlipID() + " Width: " + newSlip.getWidth() + " slipLength: "
 //            + newSlip.getSlipLength() + " Customer_Phone_Number: " + newSlip.getCustomerPhoneNo());
-         
+//        
+//        newSlip = Slip.getSlip(2);
+//        System.out.println("Dock ID: " + newSlip.getDockID() + " SlipID: " 
+//            + newSlip.getSlipID() + " Width: " + newSlip.getWidth() + " slipLength: "
+//            + newSlip.getSlipLength() + " Customer_Phone_Number: " + newSlip.getCustomerPhoneNo());
+//         
           //Test CoveredSlip.java
 //            CoveredSlip newCovSlip = new CoveredSlip();
 //            newCovSlip.setDockID(2);
