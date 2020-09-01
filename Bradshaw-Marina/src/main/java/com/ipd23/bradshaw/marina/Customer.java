@@ -14,18 +14,28 @@ public class Customer {
     private String name;
     private String address;
     private String phoneNo;
+    private String boatID;
+    private String slipID;
+    private String leaseID;
     
      public Customer() {
         this.name = "";
         this.address = "";
         this.phoneNo = "";
+        this.boatID = "";
+        this.slipID = "";
+        this.leaseID = "";
     }
 
-    public Customer(String name, String address, String phoneNo) {
+    public Customer(String name, String address, String phoneNo, String boatID, String slipID, String leaseID) {
         this.name = name;
         this.address = address;
         this.phoneNo = phoneNo;
+        this.boatID = boatID;
+        this.slipID = slipID;
+        this.leaseID = leaseID;
     }
+
 
     public void setName(String name) {
         this.name = name;
@@ -50,6 +60,32 @@ public class Customer {
     public String getPhoneNo() {
         return phoneNo;
     }
+
+    public String getBoatID() {
+        return boatID;
+    }
+
+    public void setBoatID(String boatID) {
+        this.boatID = boatID;
+    }
+
+    public String getSlipID() {
+        return slipID;
+    }
+
+    public void setSlipID(String slipID) {
+        this.slipID = slipID;
+    }
+
+    public String getLeaseID() {
+        return leaseID;
+    }
+
+    public void setLeaseID(String leaseID) {
+        this.leaseID = leaseID;
+    }
+    
+    
     
     public void save() throws FileNotFoundException{
         Scanner inFile = new Scanner (new FileReader ("data/customer.dat"));
@@ -70,6 +106,9 @@ public class Customer {
             aCustomer[i].name = inFile.next();
             aCustomer[i].address = inFile.next();
             aCustomer[i].phoneNo = inFile.next();
+            aCustomer[i].boatID = inFile.next();
+            aCustomer[i].slipID = inFile.next();
+            aCustomer[i].leaseID = inFile.next();
             
             // if the customer exist, modify the customer
             if (this.phoneNo.equals(aCustomer[i].phoneNo)){
@@ -77,17 +116,21 @@ public class Customer {
                 aCustomer[i].name = this.name;
                 aCustomer[i].address = this.address;
                 aCustomer[i].phoneNo = this.phoneNo;
+                aCustomer[i].boatID = this.boatID;
+                aCustomer[i].slipID = this.slipID;
+                aCustomer[i].leaseID = this.leaseID;
             } // end if       
         } // end for
         // Stores the array in the file      
       PrintWriter outFile = new PrintWriter("data/customer.dat");
       for (int i = 0; i<linesCount; i++){
-            outFile.printf("%s %s %s%n", aCustomer[i].name, aCustomer[i].address, aCustomer[i].phoneNo);
+            outFile.printf("%s %s %s %s %s %s%n", aCustomer[i].name, aCustomer[i].address, 
+                    aCustomer[i].phoneNo, aCustomer[i].boatID, aCustomer[i].slipID, aCustomer[i].leaseID);
         }
       
       // Add new line of customer
       if (!customerExist)
-      outFile.printf("%s %s %s%n", this.name, this.address, this.phoneNo);
+      outFile.printf("%s %s %s %s %s %s%n", this.name, this.address, this.phoneNo, this.boatID, this.slipID, this.leaseID);
       
       // close the inFile and the outFile
      inFile.close();
@@ -101,7 +144,7 @@ public class Customer {
        ArrayList<Customer> aCustomer = new ArrayList<Customer>(); 
        int i = 0;
        while (inFile.hasNext()) {
-           aCustomer.add(i, new Customer(inFile.next(), inFile.next(), inFile.next()));
+           aCustomer.add(i, new Customer(inFile.next(), inFile.next(), inFile.next(), inFile.next(), inFile.next(), inFile.next()));
            if (aCustomer.get(i).phoneNo.equals(this.phoneNo)){
                 aCustomer.remove(i);
                 i--;
@@ -111,9 +154,10 @@ public class Customer {
        
                // Stores the array list in the file   
        PrintWriter outFile = new PrintWriter("data/customer.dat");
-      for (int j = 0; j<aCustomer.size(); j++)
-           outFile.printf("%s %s %s%n", aCustomer.get(j).name, aCustomer.get(j).address, aCustomer.get(j).phoneNo);
-     
+      for (int j = 0; j<aCustomer.size(); j++){
+           outFile.printf("%s %s %s %s %s %s%n", aCustomer.get(j).name, aCustomer.get(j).address, 
+                   aCustomer.get(j).phoneNo, aCustomer.get(j).boatID, aCustomer.get(j).slipID, aCustomer.get(j).leaseID);
+      }
        // close the inFile and the outFile
       inFile.close();
      outFile.close();
@@ -126,18 +170,36 @@ public class Customer {
        ArrayList<Customer> aCustomer = new ArrayList<Customer>(); 
        int i = 0;
        while (inFile.hasNext()) {
-           aCustomer.add(i, new Customer(inFile.next(), inFile.next(), inFile.next()));
+           aCustomer.add(i, new Customer(inFile.next(), inFile.next(), inFile.next(), inFile.next(), inFile.next(), inFile.next()));
            if (aCustomer.get(i).phoneNo.equals(phoneNo)){
                result.name = aCustomer.get(i).name;
                result.address = aCustomer.get(i).address;
                result.phoneNo = aCustomer.get(i).phoneNo;
+               result.boatID = aCustomer.get(i).boatID;
+               result.slipID = aCustomer.get(i).slipID;
+               result.leaseID = aCustomer.get(i).leaseID;
            }
            i++;             
         } // end while
        // close the inFile and the outFile
       inFile.close();
     return result;
-    } // end method remove
+    } // end method getCustomer
+    
+    public static ArrayList getAllCustomer() throws FileNotFoundException{
+        Scanner inFile = new Scanner (new FileReader ("data/customer.dat"));
+        Customer result = new Customer();  
+        // Declare an ArrayList of  objects
+       ArrayList<Customer> aCustomer = new ArrayList<Customer>(); 
+       int i = 0;
+       while (inFile.hasNext()) {
+           aCustomer.add(i, new Customer(inFile.next(), inFile.next(), inFile.next(), inFile.next(), inFile.next(), inFile.next()));
+           i++;
+        } // end while
+       // close the inFile
+      inFile.close();
+    return aCustomer;
+    } // end method getCustomer
     
       
 } // end class Customer
