@@ -134,7 +134,7 @@ public void removePowerBoatFromSlip() throws FileNotFoundException{
 
 
 
-	public  PowerBoat getPowerBoat(String id)throws FileNotFoundException{
+	public static  PowerBoat getPowerBoat(String id)throws FileNotFoundException{
 		
 		Scanner inFile = new Scanner (new FileReader ("PowerBoat.txt"));
 		PowerBoat result = new PowerBoat();  
@@ -162,17 +162,20 @@ public void removePowerBoatFromSlip() throws FileNotFoundException{
     
 	}
 	
-	public void printAllPowerBoat() throws FileNotFoundException{
-		
-		File fa = new File("PowerBoat.txt");
-		  Scanner asd = new Scanner(fa);
-		  asd.useDelimiter("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;");
-		  while(asd.hasNext()) {
-			  String temp = asd.next();
-			  System.out.println("RegNumber  " + "BoatLeangh  " + "Manufactur " + "Year "
-			  +"PhoneNum" +" NumEngines" + " FuelType \n" +temp );
-		  }
-	}
-
+	 public static ArrayList getAllPowerBoat() throws FileNotFoundException{
+	        Scanner inFile = new Scanner (new FileReader ("PowerBoat.txt"));
+	        PowerBoat result = new PowerBoat();  
+	        // Declare an ArrayList of  objects
+	       ArrayList<PowerBoat> pBoat = new ArrayList<PowerBoat>(); 
+	       int i = 0;
+	       while (inFile.hasNext()) {
+	    	   pBoat.add(i, new PowerBoat(inFile.next(), inFile.nextDouble(), inFile.next(),inFile.nextInt(),inFile.next(),
+	    	   			inFile.nextDouble(),inFile.next()));
+	           i++;
+	        } // end while
+	       // close the inFile
+	      inFile.close();
+	    return pBoat;
+	    } // end method getCustomer
 
 }

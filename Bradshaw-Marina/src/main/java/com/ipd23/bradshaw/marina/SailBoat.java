@@ -1,15 +1,16 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SailBoat extends Boat{
 	
-	public double keelDepth;
-	public int numberSails;
-	public String motorType;
+	protected double keelDepth;
+	protected int numberSails;
+	protected String motorType;
 	
 	public SailBoat() {
 		super();
@@ -145,7 +146,7 @@ public void removeSailBoatFromSlip() throws FileNotFoundException{
 
 
 
-	public  SailBoat getSailBoat(String id)throws FileNotFoundException{
+	public  static SailBoat getSailBoat(String id)throws FileNotFoundException{
 		
 		Scanner inFile = new Scanner (new FileReader ("SailBoat.txt"));
 		SailBoat result = new SailBoat();  
@@ -173,17 +174,23 @@ public void removeSailBoatFromSlip() throws FileNotFoundException{
     return result;
     
 	}
-public void printAllSailBoat() throws FileNotFoundException{
-		
-		File fa = new File("SailBoat.txt");
-		  Scanner asd = new Scanner(fa);
-		  asd.useDelimiter("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;");
-		  while(asd.hasNext()) {
-			  String temp = asd.next();
-			  System.out.println("RegNumber  " + "BoatLeangh  " + "Manufactur " + "Year "
-			  +"PhoneNum" + "  KeelDepth " + "Sails " +"MotorType\n" +temp );
-		  }
-	}
+	 public static ArrayList getAllSailBoat() throws FileNotFoundException{
+	        Scanner inFile = new Scanner (new FileReader ("SailBoat.txt"));
+	        SailBoat result = new SailBoat();  
+	        // Declare an ArrayList of  objects
+	       ArrayList<SailBoat> sBoat = new ArrayList<SailBoat>(); 
+	       int i = 0;
+	       while (inFile.hasNext()) {
+	    	   sBoat.add(i, new SailBoat(inFile.next(), inFile.nextDouble(), inFile.next(),inFile.nextInt(), inFile.next(),
+	        		   inFile.nextDouble(),inFile.nextInt(),inFile.next()));
+	           i++;
+	        } // end while
+	       // close the inFile
+	      inFile.close();
+	    return sBoat;
+	    } // end method getCustomer
 }
+
+
 
 
