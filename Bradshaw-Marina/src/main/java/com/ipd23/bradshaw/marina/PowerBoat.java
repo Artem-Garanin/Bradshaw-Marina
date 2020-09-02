@@ -1,3 +1,4 @@
+package com.ipd23.bradshaw.marina;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,8 +8,8 @@ import java.util.Scanner;
 
 public class PowerBoat extends Boat{
 
-	public double numberEngines;
-	public String fuelType;
+	private double numberEngines;
+	private String fuelType;
 	
 	
 	public PowerBoat() {
@@ -45,8 +46,8 @@ public void  assignBoatToSlip() {
 
 public void savePowerBoat() throws FileNotFoundException{
 		
-		Scanner inFile = new Scanner (new FileReader ("PowerBoat.txt"));
-        Scanner linesScanner = new Scanner (new FileReader ("PowerBoat.txt"));
+		Scanner inFile = new Scanner (new FileReader ("data/PowerBoat.dat"));
+        Scanner linesScanner = new Scanner (new FileReader ("data/PowerBoat.dat"));
         boolean powerBoatExist = false;
         // Get the number of lines in the file
         int linesCount = 0;
@@ -86,7 +87,7 @@ public void savePowerBoat() throws FileNotFoundException{
               } // end if       
           } // end for
           // Stores the array in the file      
-        PrintWriter outFile = new PrintWriter("PowerBoat.txt");
+        PrintWriter outFile = new PrintWriter("data/PowerBoat.dat");
         for (int i = 0; i<linesCount; i++){
               outFile.printf("%s %f %s %d %s %f %s%n", aBoat[i].stateRegistraitionNo, aBoat[i].boatLeangh, aBoat[i].manufacturer,  
             		  aBoat[i].year,  aBoat[i].phoneNo, aBoat[i].numberEngines, aBoat[i].fuelType);
@@ -105,7 +106,7 @@ public void savePowerBoat() throws FileNotFoundException{
 
 public void removePowerBoatFromSlip() throws FileNotFoundException{
 	
-	 Scanner inFile = new Scanner (new FileReader ("PowerBoat.txt"));
+	 Scanner inFile = new Scanner (new FileReader ("data/PowerBoat.dat"));
        
        // Declare an ArrayList of  objects
       ArrayList<PowerBoat> aBoat = new ArrayList<PowerBoat>(); 
@@ -121,7 +122,7 @@ public void removePowerBoatFromSlip() throws FileNotFoundException{
 }
       
       // Stores the array list in the file   
-      PrintWriter outFile = new PrintWriter("PowerBoat.txt");
+      PrintWriter outFile = new PrintWriter("data/PowerBoat.dat");
      for (int j = 0; j<aBoat.size(); j++)
           outFile.printf("%s %f %s %d %s %f %s%n", aBoat.get(j).stateRegistraitionNo, aBoat.get(j).boatLeangh, aBoat.get(j).manufacturer,
         		  aBoat.get(j).year,  aBoat.get(j).phoneNo,aBoat.get(j).numberEngines,aBoat.get(j).fuelType);
@@ -134,9 +135,9 @@ public void removePowerBoatFromSlip() throws FileNotFoundException{
 
 
 
-	public  PowerBoat getPowerBoat(String id)throws FileNotFoundException{
+	public static  PowerBoat getPowerBoat(String id)throws FileNotFoundException{
 		
-		Scanner inFile = new Scanner (new FileReader ("PowerBoat.txt"));
+		Scanner inFile = new Scanner (new FileReader ("data/PowerBoat.dat"));
 		PowerBoat result = new PowerBoat();  
         // Declare an ArrayList of  objects
        ArrayList<PowerBoat> aBoat = new ArrayList<PowerBoat>(); 
@@ -162,17 +163,20 @@ public void removePowerBoatFromSlip() throws FileNotFoundException{
     
 	}
 	
-	public void printAllPowerBoat() throws FileNotFoundException{
-		
-		File fa = new File("PowerBoat.txt");
-		  Scanner asd = new Scanner(fa);
-		  asd.useDelimiter("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;");
-		  while(asd.hasNext()) {
-			  String temp = asd.next();
-			  System.out.println("RegNumber  " + "BoatLeangh  " + "Manufactur " + "Year "
-			  +"PhoneNum" +" NumEngines" + " FuelType \n" +temp );
-		  }
-	}
-
+	 public static ArrayList getAllPowerBoat() throws FileNotFoundException{
+	        Scanner inFile = new Scanner (new FileReader ("data/PowerBoat.dat"));
+	        PowerBoat result = new PowerBoat();  
+	        // Declare an ArrayList of  objects
+	       ArrayList<PowerBoat> pBoat = new ArrayList<PowerBoat>(); 
+	       int i = 0;
+	       while (inFile.hasNext()) {
+	    	   pBoat.add(i, new PowerBoat(inFile.next(), inFile.nextDouble(), inFile.next(),inFile.nextInt(),inFile.next(),
+	    	   			inFile.nextDouble(),inFile.next()));
+	           i++;
+	        } // end while
+	       // close the inFile
+	      inFile.close();
+	    return pBoat;
+	    } // end method getCustomer
 
 }

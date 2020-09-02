@@ -39,10 +39,10 @@ public class BradshawMarinaTest  {
                     trackDock();
                   break;}
                   case 5:{
-                    System.out.println("case 5");
+                    trackPowerBoat();
                   break;}
                   case 6:{
-                    System.out.println("case 6");
+                    trackSailBoat();
                   break;}
                   case 7:{
                     System.out.println("case 7");
@@ -551,6 +551,277 @@ public class BradshawMarinaTest  {
                 } // end switch	       	
         } // end while  
     } // end method trackDock
+    
+    // Boat part. Sail Boat and Power Boat
+    // Sail Boat  
+
+public static void trackSailBoat() throws IOException, InterruptedException{
+    String cont = "y";
+       int choice = 0;      
+       while( cont.equalsIgnoreCase("y") ) {  
+               clearScreen();            
+       	System.out.println("\t\t Sail Boat Records\n");
+	        System.out.println("1 ===> Add New Sail Boat ");
+	        System.out.println("2 ===> Remove Existing Sail Boat ");	
+	        System.out.println("3 ===> View Sail Boat Record ");
+	        System.out.println("4 ===> View All Sail Boat Records ");
+               System.out.println("5 ===> Back to the main menu ");
+	        System.out.print("\n\n");
+	        System.out.println("Enter your choice: ");
+	        
+	        choice = getInt();
+               switch (choice) {
+                   
+               case 1:{
+                   while( cont.equalsIgnoreCase("y") ) {  
+                   clearScreen();
+                   SailBoat sailBoat = new SailBoat();
+                   System.out.println("\t\t Add New Sail Boat\n");
+                   System.out.println("Enter the state registraition number: ");
+                   sailBoat.setStateRegistraitionNo(getString());
+                   System.out.println("Enter the boat leangh: ");
+                   sailBoat.setBoatLeangh(getDouble());
+                   System.out.println("Enter the manufacturer: ");
+                   sailBoat.setManufacturer(getString());
+                   System.out.println("Enter the year of the boat: ");
+                   sailBoat.setYear(getInt());
+                   System.out.println("Enter the phone number: ");
+                   sailBoat.setPhoneNo(getString());
+                   System.out.println("Enter the keel depth: ");
+                   sailBoat.setKeelDepth(getDouble());
+                   System.out.println("Enter the number sails: ");
+                   sailBoat.setNumberSails(getInt());
+                   System.out.println("Enter the motor type: ");
+                   sailBoat.setMotorType(getString());
+                   System.out.printf("%n\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", "Registraition number", "Boat leangh", 
+                           "Manufacturer", "Year of the boat", "Phone number", "Keel depth", "Number sails","Motor type");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                           "=====================", "===========", "============", "================", "===========", "==========",
+                           "============", "==========");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t%-10s\t %n%n", sailBoat.getStateRegistraitionNo(), 
+                		   sailBoat.getBoatLeangh(), sailBoat.getManufacturer(),  sailBoat.getYear(), 
+                		   sailBoat.getPhoneNo(), sailBoat.getKeelDepth(), sailBoat.getNumberSails(), sailBoat.getMotorType());
+                   System.out.println("Save the record? Y/N");    
+                   cont = getString();
+                   if(cont.equalsIgnoreCase("y")){
+                	   sailBoat.saveSailBoat();
+                   System.out.println("The record saved");}
+                   break;
+                   } // end while    
+                   System.out.println("Do you want to continue with seil boat records? Y/N");
+                   cont = getString();
+                   break;}
+               
+                 case 2:{
+                   while( cont.equalsIgnoreCase("y") ) {  
+                   clearScreen();
+                   SailBoat sailBoat = new SailBoat();
+                   System.out.println("\t\t Remove Existing seil boat\n");
+                   System.out.println("Enter the state registraition Number: ");
+                   sailBoat = (SailBoat) SailBoat.getSailBoat(getString()); 
+                   System.out.printf("%n\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", "Registraition number", "Boat leangh", 
+                           "Manufacturer", "Year of the boat", "Phone number", "Keel depth", "Number sails","Motor type");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                           "=====================", "===========", "============", "================", "===========", "==========",
+                           "============", "==========");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t%-10s\t %n%n", sailBoat.getStateRegistraitionNo(), 
+                		   sailBoat.getBoatLeangh(), sailBoat.getManufacturer(),  sailBoat.getYear(), 
+                		   sailBoat.getPhoneNo(), sailBoat.getKeelDepth(), sailBoat.getNumberSails(), sailBoat.getMotorType());
+                   System.out.println("Remove the record? Y/N");    
+                   cont = getString();
+                   if(cont.equalsIgnoreCase("y")){
+                	   sailBoat.removeSailBoatFromSlip();
+                   System.out.println("The record removed");}
+                   break;
+                   } // end while    
+                   System.out.println("Do you want to continue with sail boat records? Y/N");
+                   cont = getString();
+                   break;}
+                 
+                 case 3:{
+                   while( cont.equalsIgnoreCase("y") ) {  
+                   clearScreen();
+                   SailBoat sailBoat = new SailBoat();
+                   System.out.println("\t\t View sail boat Record\n");
+                   System.out.println("Enter the registraition number: ");
+                   sailBoat = (SailBoat) SailBoat.getSailBoat(getString()); 
+                   System.out.printf("%n\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", "Registraition number", "Boat leangh", 
+                           "Manufacturer", "Year of the boat", "Phone number", "Keel depth", "Number sails","Motor type");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                           "=====================", "===========", "============", "================", "===========", "==========",
+                           "============", "==========");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t%-10s\t %n%n", sailBoat.getStateRegistraitionNo(), 
+                		   sailBoat.getBoatLeangh(), sailBoat.getManufacturer(),  sailBoat.getYear(), 
+                		   sailBoat.getPhoneNo(), sailBoat.getKeelDepth(), sailBoat.getNumberSails(), sailBoat.getMotorType());
+                   if (sailBoat.getStateRegistraitionNo().equalsIgnoreCase(""))
+                   System.out.println("The sail boat is not found");    
+                   break;
+                   } // end while    
+                   System.out.println("Do you want to continue with sail boat records? Y/N");
+                   cont = getString();
+                   break;}
+                 
+                 case 4:{
+                   while( cont.equalsIgnoreCase("y") ) {  
+                   clearScreen();
+                   ArrayList<SailBoat> arrlist = new ArrayList<SailBoat>();
+                   arrlist = SailBoat.getAllSailBoat();
+                   System.out.println("\t\t View All sail boat Records\n");
+                   System.out.printf("%n\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", "Registraition number", "Boat leangh", 
+                           "Manufacturer", "Year of the boat", "Phone number", "Keel depth", "Number sails","Motor type");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                           "=====================", "===========", "============", "================", "===========", "==========",
+                           "============", "==========");
+                   for (SailBoat sBoat : arrlist) {
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", sBoat.getStateRegistraitionNo(), 
+                		   sBoat.getBoatLeangh(), sBoat.getManufacturer(),  sBoat.getYear(), 
+                		   sBoat.getPhoneNo(), sBoat.getKeelDepth(), sBoat.getNumberSails(), sBoat.getMotorType());
+                   }
+                   break;
+                   } // end while    
+                   System.out.printf("%nDo you want to continue with sail boat records? Y/N%n");
+                   cont = getString();
+                   break;}
+                 case 5:{
+	          cont = "n";
+                 break;}
+               } // end switch	       	
+       } // end while  
+   } 
+
+	// Power Boat
+public static void trackPowerBoat() throws IOException, InterruptedException{
+    String cont = "y";
+       int choice = 0;      
+       while( cont.equalsIgnoreCase("y") ) {  
+               clearScreen();            
+       	System.out.println("\t\t Sail Boat Records\n");
+	        System.out.println("1 ===> Add New Power Boat ");
+	        System.out.println("2 ===> Remove Existing Power Boat ");	
+	        System.out.println("3 ===> View Sail Power Record ");
+	        System.out.println("4 ===> View All Sail Power Records ");
+               System.out.println("5 ===> Back to the main menu ");
+	        System.out.print("\n\n");
+	        System.out.println("Enter your choice: ");
+	        
+	        choice = getInt();
+               switch (choice) {
+                   
+               case 1:{
+                   while( cont.equalsIgnoreCase("y") ) {  
+                   clearScreen();
+                   PowerBoat powerBoat = new PowerBoat();
+                   System.out.println("\t\t Add New Sail Boat\n");
+                   System.out.println("Enter the state registraition number: ");
+                   powerBoat.setStateRegistraitionNo(getString());
+                   System.out.println("Enter the boat leangh: ");
+                   powerBoat.setBoatLeangh(getDouble());
+                   System.out.println("Enter the manufacturer: ");
+                   powerBoat.setManufacturer(getString());
+                   System.out.println("Enter the year of the boat: ");
+                   powerBoat.setYear(getInt());
+                   System.out.println("Enter the phone number: ");
+                   powerBoat.setPhoneNo(getString());
+                   System.out.println("Enter the number engines: ");
+                   powerBoat.setNumberEngines(getDouble());
+                   System.out.println("Enter the fuel type: ");
+                   powerBoat.setFuelType(getString());
+                   
+                   System.out.printf("%n\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t %n", "Registraition number", "Boat leangh", 
+                           "Manufacturer", "Year of the boat", "Phone number", "Number engines", "Fuel type");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t %n", 
+                           "=====================", "===========", "============", "================", "===========", "==============",
+                           "==========");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t %n%n", powerBoat.getStateRegistraitionNo(), 
+                		   powerBoat.getBoatLeangh(), powerBoat.getManufacturer(),  powerBoat.getYear(), 
+                		   powerBoat.getPhoneNo(), powerBoat.getNumberEngines(), powerBoat.getFuelType());
+                   System.out.println("Save the record? Y/N");    
+                   cont = getString();
+                   if(cont.equalsIgnoreCase("y")){
+                	   powerBoat.savePowerBoat();
+                   System.out.println("The record saved");}
+                   break;
+                   } // end while    
+                   System.out.println("Do you want to continue with power boat records? Y/N");
+                   cont = getString();
+                   break;}
+               
+                 case 2:{
+                   while( cont.equalsIgnoreCase("y") ) {  
+                   clearScreen();
+                   PowerBoat powerBoat = new PowerBoat();
+                   System.out.println("\t\t Remove Existing seil boat\n");
+                   System.out.println("Enter the state registraition Number: ");
+                   powerBoat = (PowerBoat) PowerBoat.getPowerBoat(getString()); 
+                   System.out.printf("%n\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t %n", "Registraition number", "Boat leangh", 
+                           "Manufacturer", "Year of the boat", "Phone number", "Number engines", "Fuel type");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t %n", 
+                           "=====================", "===========", "============", "================", "===========", "==============",
+                           "==========");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t %n%n", powerBoat.getStateRegistraitionNo(), 
+                		   powerBoat.getBoatLeangh(), powerBoat.getManufacturer(),  powerBoat.getYear(), 
+                		   powerBoat.getPhoneNo(), powerBoat.getNumberEngines(), powerBoat.getFuelType());
+                   System.out.println("Remove the record? Y/N");    
+                   cont = getString();
+                   if(cont.equalsIgnoreCase("y")){
+                	   powerBoat.removePowerBoatFromSlip();
+                   System.out.println("The record removed");}
+                   break;
+                   } // end while    
+                   System.out.println("Do you want to continue with power boat records? Y/N");
+                   cont = getString();
+                   break;}
+                 
+                 case 3:{
+                   while( cont.equalsIgnoreCase("y") ) {  
+                   clearScreen();
+                   PowerBoat powerBoat = new PowerBoat();
+                   System.out.println("\t\t View power boat Record\n");
+                   System.out.println("Enter the registraition number: ");
+                   powerBoat = (PowerBoat) PowerBoat.getPowerBoat(getString()); 
+                   System.out.printf("%n\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t %n", "Registraition number", "Boat leangh", 
+                           "Manufacturer", "Year of the boat", "Phone number", "Number engines", "Fuel type");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t %n", 
+                           "=====================", "===========", "============", "================", "===========", "==============",
+                           "==========");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t %n%n", powerBoat.getStateRegistraitionNo(), 
+                		   powerBoat.getBoatLeangh(), powerBoat.getManufacturer(),  powerBoat.getYear(), 
+                		   powerBoat.getPhoneNo(), powerBoat.getNumberEngines(), powerBoat.getFuelType());
+                   if (powerBoat.getStateRegistraitionNo().equalsIgnoreCase(""))
+                   System.out.println("The power boat is not found");    
+                   break;
+                   } // end while    
+                   System.out.println("Do you want to continue with power boat records? Y/N");
+                   cont = getString();
+                   break;}
+                 
+                 case 4:{
+                   while( cont.equalsIgnoreCase("y") ) {  
+                   clearScreen();
+                   ArrayList<PowerBoat> arrlist = new ArrayList<PowerBoat>();
+                   arrlist = PowerBoat.getAllPowerBoat();
+                   System.out.println("\t\t View All power boat Records\n");
+                   System.out.printf("%n\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t %n", "Registraition number", "Boat leangh", 
+                           "Manufacturer", "Year of the boat", "Phone number", "Number engines", "Fuel type");
+                   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t %n", 
+                           "=====================", "===========", "============", "================", "===========", "==============",
+                           "==========");
+                   for (PowerBoat pBoat : arrlist) {
+                	   System.out.printf("\t%-20s\t%-10s\t%-10s\t%-20s\t%-10s\t%-10s\t%-10s\t %n", pBoat.getStateRegistraitionNo(), 
+                			   pBoat.getBoatLeangh(), pBoat.getManufacturer(),  pBoat.getYear(), 
+                			   pBoat.getPhoneNo(), pBoat.getNumberEngines(), pBoat.getFuelType());
+                   }
+                   break;
+                   } // end while    
+                   System.out.printf("%nDo you want to continue with power boat records? Y/N%n");
+                   cont = getString();
+                   break;}
+                 case 5:{
+	          cont = "n";
+                 break;}
+               } // end switch	       	
+       } // end while  
+   } 
     
     public static int getInt(){
     Scanner input = new Scanner(System.in);

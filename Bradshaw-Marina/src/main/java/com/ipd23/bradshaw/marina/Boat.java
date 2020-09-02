@@ -1,4 +1,4 @@
-
+package com.ipd23.bradshaw.marina;
 public  class Boat {
 
 	protected String stateRegistraitionNo;
