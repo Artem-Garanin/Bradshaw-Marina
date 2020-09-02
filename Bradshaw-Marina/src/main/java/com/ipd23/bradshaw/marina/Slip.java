@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// Slip.java
 package com.ipd23.bradshaw.marina;
 
 import java.io.FileNotFoundException;
@@ -77,16 +73,8 @@ public class Slip {
     public void setCustomerPhoneNo(String customerPhoneNo) {
         this.customerPhoneNo = customerPhoneNo;
     }
-
-     public void assignCustomer(String customerPhoneNo) {
-        this.customerPhoneNo = customerPhoneNo;
-    }
-     
-      public void assignDock(String dockID) {
-        this.dockID = dockID;
-    }
     
-     public void save() throws FileNotFoundException{
+    public void save() throws FileNotFoundException{
         Scanner inFile = new Scanner (new FileReader ("data/slip.dat"));
         Scanner linesScanner = new Scanner (new FileReader ("data/slip.dat"));
         boolean slipExist = false;

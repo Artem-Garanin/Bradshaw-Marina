@@ -1,4 +1,4 @@
-package ipd23.vladimir;
+package com.ipd23.bradshaw.marina;
 
 import java.util.*;
 import java.io.*;
@@ -77,8 +77,8 @@ import java.time.LocalDate;
 	
 		public void saveAnnualLease1() throws FileNotFoundException{
 			
-			Scanner inFile = new Scanner (new FileReader ("AnnualLease.txt"));
-	        Scanner linesScanner = new Scanner (new FileReader ("AnnualLease.txt"));
+			Scanner inFile = new Scanner (new FileReader ("data/AnnualLease.dat"));
+	        Scanner linesScanner = new Scanner (new FileReader ("data/AnnualLease.dat"));
 	        boolean annualLease1 = false;
 	        // Get the number of lines in the file
 	        int linesCount = 0;
@@ -103,11 +103,12 @@ import java.time.LocalDate;
 	        	sLease[i].amountAnnual = inFile.nextDouble();
 	        	sLease[i].amountPaid = inFile.nextDouble();
 	        	sLease[i].balanceDue = inFile.nextDouble();
+                        
+                        // calculate balance due
+			balanceDue = this.amountAnnual - amountPaid;
 	        	
                         // calculate monthly lease
-	        	payMonthly = this.amountAnnual / NUMBER_OF_MONTHS;
-			// calculate balance due
-			balanceDue = this.amountAnnual - amountPaid;
+	        	payMonthly = this.balanceDue / NUMBER_OF_MONTHS;
 	              
 	              // if the customer exist, modify the customer
 	              if (this.leaseID.equals(sLease[i].leaseID)){
@@ -127,7 +128,7 @@ import java.time.LocalDate;
 	              } // end if       
 	          } // end for
 	          // Stores the array in the file      
-	        PrintWriter outFile = new PrintWriter("AnnualLease.txt");
+	        PrintWriter outFile = new PrintWriter("data/AnnualLease.dat");
             for (int i = 0; i<linesCount; i++){
                   outFile.printf("%s %d %s %d %f %f %f %f%n", sLease[i].leaseID, 
                           sLease[i].numberOfDays, sLease[i].phoneNo, sLease[i].slipID,
@@ -151,7 +152,7 @@ import java.time.LocalDate;
   } // end method save
 
         public void remove() throws FileNotFoundException{
-                Scanner inFile = new Scanner (new FileReader ("AnnualLease.txt"));
+                Scanner inFile = new Scanner (new FileReader ("data/AnnualLease.dat"));
 
                 // Declare an ArrayList of  objects
                ArrayList<AnnualLease1> aLease = new ArrayList<AnnualLease1>();
@@ -168,7 +169,7 @@ import java.time.LocalDate;
                 } // end while
 
                        // Stores the array list in the file
-               PrintWriter outFile = new PrintWriter("AnnualLease.txt");
+               PrintWriter outFile = new PrintWriter("data/AnnualLease.dat");
               for (int j = 0; j<aLease.size(); j++)
                    outFile.printf("%s %d %s %d %.2f %.2f %.2f %.2f%n", 
                            aLease.get(j).leaseID, 
@@ -183,7 +184,7 @@ import java.time.LocalDate;
     } // end method remove
         
         public static AnnualLease1 getLease(String leaseID) throws FileNotFoundException{
-		        Scanner inFile = new Scanner (new FileReader ("AnnualLease.txt"));
+		        Scanner inFile = new Scanner (new FileReader ("data/AnnualLease.dat"));
 		        AnnualLease1 result = new AnnualLease1();
 		        // Declare an ArrayList of  objects
 		       ArrayList<AnnualLease1> aLease = new ArrayList<AnnualLease1>();
@@ -212,7 +213,7 @@ import java.time.LocalDate;
     } // end method getLease
         
         public static ArrayList getAllLease() throws FileNotFoundException{
-		        Scanner inFile = new Scanner (new FileReader ("AnnualLease.txt"));
+		        Scanner inFile = new Scanner (new FileReader ("data/AnnualLease.dat"));
 		        //AnnualLease1 result = new AnnualLease1();
 		        // Declare an ArrayList of  objects
 		       ArrayList<AnnualLease1> aLease = new ArrayList<AnnualLease1>();
@@ -227,4 +228,5 @@ import java.time.LocalDate;
 		      inFile.close();
 		    return aLease;
     } // end method getLease
+        
   }

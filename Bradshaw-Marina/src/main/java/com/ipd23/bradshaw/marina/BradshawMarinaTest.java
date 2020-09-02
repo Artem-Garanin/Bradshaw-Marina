@@ -45,10 +45,10 @@ public class BradshawMarinaTest  {
                     trackSailBoat();
                   break;}
                   case 7:{
-                    System.out.println("case 7");
+                    trackAnnualLease();
                   break;}
                   case 8:{
-                    System.out.println("case 8");
+                    trackDailyLease();
                   break;}
                   case 9:{
                     cont = "n";
@@ -59,6 +59,260 @@ public class BradshawMarinaTest  {
         } // end while
     
     } // end method main
+    
+    public static void trackAnnualLease() throws IOException, InterruptedException{
+     String cont = "y";
+        int choice = 0;      
+        while( cont.equalsIgnoreCase("y") ) {  
+                clearScreen();            
+        	System.out.println("\t\t Annual Lease Records\n");
+	        System.out.println("1 ===> Add New Annual Lease ");
+	        System.out.println("2 ===> Remove Existing Annual Lease ");	
+	        System.out.println("3 ===> View Annual Lease Record ");
+	        System.out.println("4 ===> View All Annual Lease Records ");
+                System.out.println("5 ===> Back to the main menu ");
+	        System.out.print("\n\n");
+	        System.out.println("Enter your choice: ");
+	        choice = getInt();
+                switch (choice) {
+                    
+                case 1:{
+                    while( cont.equalsIgnoreCase("y") ) {  
+                    clearScreen();
+                    AnnualLease1 newAnnualLease1 = new AnnualLease1();
+                    System.out.println("\t\t Add New Lease\n");
+                    System.out.println("Enter the Lease ID: ");
+                    newAnnualLease1.setLeaseID(getString());
+//                    System.out.println("Enter the Address: ");
+//                    newAnnualLease1.setNumberOfDays(getString());
+                    System.out.println("Enter the Phone Number: ");
+                    newAnnualLease1.setPhoneNo(getString());
+                    System.out.println("Enter the Slip ID: ");
+                    newAnnualLease1.setSlipID(getInt());
+                    System.out.println("Enter the Annual Amount: ");
+                    newAnnualLease1.setAmountAnnual(getDouble());
+                    System.out.println("Enter the Paid Amount: ");
+                    newAnnualLease1.setAmountPaid(getDouble());
+                    System.out.printf("%n\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "Lease ID", "Phone Number", "Slip ID", "Paid Amount", "Paid Amount");
+                    System.out.printf("\t%-10s\t%-10s\t%-10s\t%-10s\t%-10st %n", 
+                            "=========", "===========", "=======", "===========", "===========");
+                    System.out.printf("\t%-10s\t%-10s\t%-10d\t%-10f\t%-10f\t %n%n", 
+                            newAnnualLease1.getLeaseID(), 
+                            newAnnualLease1.getPhoneNo(), newAnnualLease1.getSlipID(),
+                            newAnnualLease1.getAmountAnnual(),
+                            newAnnualLease1.getAmountPaid());
+                    System.out.println("Save the record? Y/N");    
+                    cont = getString();
+                    if(cont.equalsIgnoreCase("y")){
+                    newAnnualLease1.saveAnnualLease1();
+                    System.out.println("The record saved");}
+                    break;
+                    } // end while    
+                    System.out.println("Do you want to continue with Annual Lease records? Y/N");
+                    cont = getString();
+                    break;}
+                
+                  case 2:{
+                    while( cont.equalsIgnoreCase("y") ) {  
+                    clearScreen();
+                    AnnualLease1 newAnnualLease1 = new AnnualLease1();
+                    System.out.println("\t\t Remove Existing Annual Lease\n");
+                    System.out.println("Enter the Lease ID: ");
+                    newAnnualLease1 = AnnualLease1.getLease(getString());
+                    System.out.printf("%n\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "Lease ID", "Phone Number", "Slip ID", "Monthly Amount", "Annual Amount", "Paid Amount", "Balance Due");
+                    System.out.printf("\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "=========", "===========", "=======", "==============", "=============", "===========", "===========");
+                    System.out.printf("\t%-10s\t%-10s\t%-10d\t%-10f\t%-10f\t%-10f\t %n%n", newAnnualLease1.getLeaseID(), 
+                            newAnnualLease1.getPhoneNo(), newAnnualLease1.getSlipID(), newAnnualLease1.getAmountPaid(), 
+                            newAnnualLease1.getAmountAnnual(), newAnnualLease1.getBalanceDue());
+                    System.out.println("Remove the record? Y/N");    
+                    cont = getString();
+                    if(cont.equalsIgnoreCase("y")){
+                    newAnnualLease1.remove();
+                    System.out.println("The record removed");}
+                    break;
+                    } // end while    
+                    System.out.println("Do you want to continue with Annual Lease records? Y/N");
+                    cont = getString();
+                    break;}
+                  
+                  case 3:{
+                    while( cont.equalsIgnoreCase("y") ) {  
+                    clearScreen();
+                    AnnualLease1 newAnnualLease1 = new AnnualLease1();
+                    System.out.println("\t\t View Annual Lease Record\n");
+                    System.out.println("Enter the Lease ID: ");
+                    newAnnualLease1 = AnnualLease1.getLease(getString());
+                    System.out.printf("%n\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "Lease ID", "Phone Number", "Slip ID", "Monthly Amount", "Annual Amount", "Paid Amount", "Balance Due");
+                    System.out.printf("\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "=========", "===========", "=======", "==============", "=============", "===========", "===========");
+                     System.out.printf("\t%-10s\t%-10s\t%-10d\t%-10f\t%-10f\t%-10f\t %n%n", newAnnualLease1.getLeaseID(), 
+                            newAnnualLease1.getPhoneNo(), newAnnualLease1.getSlipID(), newAnnualLease1.getAmountPaid(), 
+                            newAnnualLease1.getAmountAnnual(), newAnnualLease1.getBalanceDue());
+                    if (newAnnualLease1.getLeaseID().equalsIgnoreCase(""))
+                    System.out.println("The Lease is not found");    
+                    break;
+                    } // end while    
+                    System.out.println("Do you want to continue with Annual Lease records? Y/N");
+                    cont = getString();
+                    break;}
+                  
+                  case 4:{
+                    while( cont.equalsIgnoreCase("y") ) {  
+                    clearScreen();
+                    ArrayList<AnnualLease1> arrlist = new ArrayList<AnnualLease1>();
+                    arrlist = AnnualLease1.getAllLease();
+                    System.out.println("\t\t View All Annual Lease Records\n");
+                    System.out.printf("%n\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "Lease ID", "Phone Number", "Slip ID", "Monthly Amount", "Annual Amount", "Paid Amount", "Balance Due");
+                    System.out.printf("\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "=========", "===========", "=======", "==============", "=============", "===========", "===========");
+                    for (AnnualLease1 aAnnLease : arrlist) {
+                    System.out.printf("\t%-10s\t%-10s\t%-10d\t%-10f\t%-10f\t%-10f\t%-10f\t %n", aAnnLease.getLeaseID(), 
+                            aAnnLease.getPhoneNo(), aAnnLease.getSlipID(), aAnnLease.getPayMonthly(), 
+                            aAnnLease.getAmountAnnual(), aAnnLease.getAmountPaid(), aAnnLease.getBalanceDue());    
+                    }
+                    break;
+                    } // end while    
+                    System.out.printf("%nDo you want to continue with Annual Lease records? Y/N%n");
+                    cont = getString();
+                    break;}
+                  case 5:{
+	          cont = "n";
+                  break;}
+                } // end switch	       	
+        } // end while  
+    } // end method trackAnnualLease
+    
+    public static void trackDailyLease() throws IOException, InterruptedException{
+     String cont = "y";
+        int choice = 0;      
+        while( cont.equalsIgnoreCase("y") ) {  
+                clearScreen();            
+        	System.out.println("\t\t Daily Lease Records\n");
+	        System.out.println("1 ===> Add New Daily Lease ");
+	        System.out.println("2 ===> Remove Existing Daily Lease ");	
+	        System.out.println("3 ===> View Daily Lease Record ");
+	        System.out.println("4 ===> View All Daily Lease Records ");
+                System.out.println("5 ===> Back to the main menu ");
+	        System.out.print("\n\n");
+	        System.out.println("Enter your choice: ");
+	        choice = getInt();
+                switch (choice) {
+                    
+                case 1:{
+                    while( cont.equalsIgnoreCase("y") ) {  
+                    clearScreen();
+                    DailyLease newDailyLease = new DailyLease();
+                    System.out.println("\t\t Add New Lease\n");
+                    System.out.println("Enter the Lease ID: ");
+                    newDailyLease.setLeaseID(getString());
+                    System.out.println("Enter the Number of Days: ");
+                    newDailyLease.setNumberOfDays(getInt());
+                    System.out.println("Enter the Phone Number: ");
+                    newDailyLease.setPhoneNo(getString());
+                    System.out.println("Enter the Slip ID: ");
+                    newDailyLease.setSlipID(getInt());
+                    System.out.println("Enter the Daily Payment: ");
+                    newDailyLease.setPayDaily(getDouble());
+//                    System.out.println("Enter the Paid Amount: ");
+//                    newDailyLease.setAmountPaid(getDouble());
+                    System.out.printf("%n\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "Lease ID", "Number of Days", "Phone Number", "Slip ID", "Daily Payment");
+                    System.out.printf("\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "=========", "=============", "============", "=======", "==============");
+                    System.out.printf("\t%-10s\t%-10d\t%-10s\t%-10d\t%-10f\t %n%n", 
+                            newDailyLease.getLeaseID(), 
+                            newDailyLease.getNumberOfDays(), newDailyLease.getPhoneNo(),
+                            newDailyLease.getSlipID(),
+                            newDailyLease.getPayDaily());
+                    System.out.println("Save the record? Y/N");    
+                    cont = getString();
+                    if(cont.equalsIgnoreCase("y")){
+                    newDailyLease.saveDailyLease();
+                    System.out.println("The record saved");}
+                    break;
+                    } // end while    
+                    System.out.println("Do you want to continue with Daily Lease records? Y/N");
+                    cont = getString();
+                    break;}
+                
+                  case 2:{
+                    while( cont.equalsIgnoreCase("y") ) {  
+                    clearScreen();
+                    DailyLease newDailyLease = new DailyLease();
+                    System.out.println("\t\t Remove Existing Daily Lease\n");
+                    System.out.println("Enter the Lease ID: ");
+                    newDailyLease = DailyLease.getLease(getString());
+                    System.out.printf("%n\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "Lease ID", "Number of Days", "Phone Number", "Slip ID", "Daily Payment", "Total Lease Amount");
+                    System.out.printf("\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "=========", "=============", "============", "========", "=============", "=================");
+                    System.out.printf("\t%-10s\t%-10d\t%-10s\t%-10d\t%-10f\t%-10f\t %n%n", newDailyLease.getLeaseID(), 
+                            newDailyLease.getNumberOfDays(), newDailyLease.getPhoneNo(), newDailyLease.getSlipID(), 
+                            newDailyLease.getPayDaily(), newDailyLease.getAmountDaily());
+                    System.out.println("Remove the record? Y/N");    
+                    cont = getString();
+                    if(cont.equalsIgnoreCase("y")){
+                    newDailyLease.remove();
+                    System.out.println("The record removed");}
+                    break;
+                    } // end while    
+                    System.out.println("Do you want to continue with Daily Lease records? Y/N");
+                    cont = getString();
+                    break;}
+                  
+                  case 3:{
+                    while( cont.equalsIgnoreCase("y") ) {  
+                    clearScreen();
+                    DailyLease newDailyLease = new DailyLease();
+                    System.out.println("\t\t View Daily Lease Record\n");
+                    System.out.println("Enter the Lease ID: ");
+                    newDailyLease = DailyLease.getLease(getString());
+                    System.out.printf("%n\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "Lease ID", "Number of Days", "Phone Number", "Slip ID", "Daily Payment", "Total Lease Amount");
+                    System.out.printf("\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "=========", "=============", "============", "========", "=============", "=================");
+                    System.out.printf("\t%-10s\t%-10d\t%-10s\t%-10d\t%-10f\t%-10f\t %n%n", newDailyLease.getLeaseID(), 
+                            newDailyLease.getNumberOfDays(), newDailyLease.getPhoneNo(), newDailyLease.getSlipID(), 
+                            newDailyLease.getPayDaily(), newDailyLease.getAmountDaily());
+                    if (newDailyLease.getLeaseID().equalsIgnoreCase(""))
+                    System.out.println("The Lease is not found");    
+                    break;
+                    } // end while    
+                    System.out.println("Do you want to continue with Daily Lease records? Y/N");
+                    cont = getString();
+                    break;}
+                  
+                  case 4:{
+                    while( cont.equalsIgnoreCase("y") ) {  
+                    clearScreen();
+                    ArrayList<DailyLease> arrlist = new ArrayList<DailyLease>();
+                    arrlist = DailyLease.getAllLease();
+                    System.out.println("\t\t View All Daily Lease Records\n");
+                    System.out.printf("%n\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "Lease ID", "Number of Days", "Phone Number", "Slip ID", "Daily Payment", "Total Lease Amount");
+                    System.out.printf("\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t %n", 
+                            "=========", "=============", "============", "========", "=============", "=================");
+                    for (DailyLease aDayLease : arrlist) {
+                    System.out.printf("\t%-10s\t%-10d\t%-10s\t%-10d\t%-10f\t%-10f\t %n", aDayLease.getLeaseID(), 
+                            aDayLease.getNumberOfDays(), aDayLease.getPhoneNo(), aDayLease.getSlipID(), aDayLease.getPayDaily(), 
+                            aDayLease.getAmountDaily());    
+                    }
+                    break;
+                    } // end while    
+                    System.out.printf("%nDo you want to continue with Daily Lease records? Y/N%n");
+                    cont = getString();
+                    break;}
+                  case 5:{
+	          cont = "n";
+                  break;}
+                } // end switch	       	
+        } // end while  
+    } // end method trackDailyLease
     
     public static void trackCustomer() throws IOException, InterruptedException{
      String cont = "y";
@@ -551,11 +805,8 @@ public class BradshawMarinaTest  {
                 } // end switch	       	
         } // end while  
     } // end method trackDock
-    
-    // Boat part. Sail Boat and Power Boat
-    // Sail Boat  
 
-public static void trackSailBoat() throws IOException, InterruptedException{
+    public static void trackSailBoat() throws IOException, InterruptedException{
     String cont = "y";
        int choice = 0;      
        while( cont.equalsIgnoreCase("y") ) {  
@@ -689,8 +940,7 @@ public static void trackSailBoat() throws IOException, InterruptedException{
        } // end while  
    } 
 
-	// Power Boat
-public static void trackPowerBoat() throws IOException, InterruptedException{
+    public static void trackPowerBoat() throws IOException, InterruptedException{
     String cont = "y";
        int choice = 0;      
        while( cont.equalsIgnoreCase("y") ) {  

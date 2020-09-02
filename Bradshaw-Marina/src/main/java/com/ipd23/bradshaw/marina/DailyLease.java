@@ -1,4 +1,4 @@
-package ipd23.vladimir;
+package com.ipd23.bradshaw.marina;
 
 import java.util.*;
 import java.io.*;
@@ -76,8 +76,8 @@ import java.time.LocalDate;
 	
 		public void saveDailyLease() throws FileNotFoundException{
 			
-		Scanner inFile = new Scanner (new FileReader ("DailyLease.txt"));
-	        Scanner linesScanner = new Scanner (new FileReader ("DailyLease.txt"));
+		Scanner inFile = new Scanner (new FileReader ("data/DailyLease.dat"));
+	        Scanner linesScanner = new Scanner (new FileReader ("data/DailyLease.dat"));
 	        boolean DailyLease = false;
 	        // Get the number of lines in the file
 	        int linesCount = 0;
@@ -120,7 +120,7 @@ import java.time.LocalDate;
 	              } // end if       
 	          } // end for
 	          // Stores the array in the file      
-	        PrintWriter outFile = new PrintWriter("DailyLease.txt");
+	        PrintWriter outFile = new PrintWriter("data/DailyLease.dat");
             for (int i = 0; i<linesCount; i++){
                   outFile.printf("%s %d %s %d %f %f%n", sLease[i].leaseID, 
                           sLease[i].numberOfDays,sLease[i].phoneNo, 
@@ -140,7 +140,7 @@ import java.time.LocalDate;
   } // end method save
 
         public void remove() throws FileNotFoundException{
-                Scanner inFile = new Scanner (new FileReader ("DailyLease.txt"));
+                Scanner inFile = new Scanner (new FileReader ("data/DailyLease.dat"));
 
                 // Declare an ArrayList of  objects
                ArrayList<DailyLease> aLease = new ArrayList<DailyLease>();
@@ -157,7 +157,7 @@ import java.time.LocalDate;
                 } // end while
 
                        // Stores the array list in the file
-               PrintWriter outFile = new PrintWriter("DailyLease.txt");
+               PrintWriter outFile = new PrintWriter("data/DailyLease.dat");
               for (int j = 0; j<aLease.size(); j++)
                    outFile.printf("%s %d %s %d %f %f%n", aLease.get(j).leaseID, 
                            aLease.get(j).numberOfDays, aLease.get(j).phoneNo, 
@@ -170,7 +170,7 @@ import java.time.LocalDate;
     } // end method remove
         
         public static DailyLease getLease(String leaseID) throws FileNotFoundException{
-		        Scanner inFile = new Scanner (new FileReader ("DailyLease.txt"));
+		        Scanner inFile = new Scanner (new FileReader ("data/DailyLease.dat"));
 		        DailyLease result = new DailyLease();
 		        // Declare an ArrayList of  objects
 		       ArrayList<DailyLease> aLease = new ArrayList<DailyLease>();
@@ -196,7 +196,7 @@ import java.time.LocalDate;
     } // end method getLease
         
         public static ArrayList getAllLease() throws FileNotFoundException{
-		        Scanner inFile = new Scanner (new FileReader ("DailyLease.txt"));
+		        Scanner inFile = new Scanner (new FileReader ("data/DailyLease.dat"));
 		        //AnnualLease1 result = new AnnualLease1();
 		        // Declare an ArrayList of  objects
 		       ArrayList<DailyLease> aLease = new ArrayList<DailyLease>();

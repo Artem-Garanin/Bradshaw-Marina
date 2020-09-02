@@ -1,4 +1,4 @@
-package ipd23.vladimir;
+package com.ipd23.bradshaw.marina;
 
 public class Lease1 {
 

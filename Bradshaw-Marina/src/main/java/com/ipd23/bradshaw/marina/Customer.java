@@ -18,7 +18,7 @@ public class Customer {
     private String slipID;
     private String leaseID;
     
-     public Customer() {
+    public Customer() {
         this.name = "";
         this.address = "";
         this.phoneNo = "";
@@ -35,7 +35,6 @@ public class Customer {
         this.slipID = slipID;
         this.leaseID = leaseID;
     }
-
 
     public void setName(String name) {
         this.name = name;
@@ -84,8 +83,6 @@ public class Customer {
     public void setLeaseID(String leaseID) {
         this.leaseID = leaseID;
     }
-    
-    
     
     public void save() throws FileNotFoundException{
         Scanner inFile = new Scanner (new FileReader ("data/customer.dat"));
