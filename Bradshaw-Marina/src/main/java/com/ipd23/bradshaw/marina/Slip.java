@@ -16,21 +16,21 @@ import java.util.Scanner;
  * @author artem
  */
 public class Slip {
-    private int dockID;
-    private int slipID;
-    private int width;
-    private int slipLength;
-    private String customerPhoneNo;
+    protected String dockID;
+    protected String slipID;
+    protected int width;
+    protected int slipLength;
+    protected String customerPhoneNo;
     
     public Slip() {
-        this.dockID = 0;
-        this.slipID = 0;
+        this.dockID = "";
+        this.slipID = "";
         this.width = 0;
         this.slipLength = 0;
         this.customerPhoneNo = "";
     }
 
-    public Slip(int dockID, int slipID, int width, int slipLength, String customerPhoneNo) {
+    public Slip(String dockID, String slipID, int width, int slipLength, String customerPhoneNo) {
         this.dockID = dockID;
         this.slipID = slipID;
         this.width = width;
@@ -38,19 +38,19 @@ public class Slip {
         this.customerPhoneNo = customerPhoneNo;
     }
     
-    public int getDockID() {
+    public String getDockID() {
         return dockID;
     }
     
-    public void setDockID(int dockID) {
+    public void setDockID(String dockID) {
         this.dockID = dockID;
     }
 
-    public int getSlipID() {
+    public String getSlipID() {
         return slipID;
     }
 
-    public void setSlipID(int slipID) {
+    public void setSlipID(String slipID) {
         this.slipID = slipID;
     }
 
@@ -82,11 +82,11 @@ public class Slip {
         this.customerPhoneNo = customerPhoneNo;
     }
      
-      public void assignDock(int dockID) {
+      public void assignDock(String dockID) {
         this.dockID = dockID;
     }
     
-     public static void save(Slip newSlip) throws FileNotFoundException{
+     public void save() throws FileNotFoundException{
         Scanner inFile = new Scanner (new FileReader ("data/slip.dat"));
         Scanner linesScanner = new Scanner (new FileReader ("data/slip.dat"));
         boolean slipExist = false;
@@ -102,46 +102,46 @@ public class Slip {
       // Initialize the array of objects and read the file into the array
       for (int i = 0; i<linesCount; i++){
             aSlip[i] = new Slip();
-            aSlip[i].dockID = inFile.nextInt();
-            aSlip[i].slipID = inFile.nextInt();
+            aSlip[i].dockID = inFile.next();
+            aSlip[i].slipID = inFile.next();
             aSlip[i].width = inFile.nextInt();
             aSlip[i].slipLength = inFile.nextInt();
             aSlip[i].customerPhoneNo = inFile.next();
             
             // if the slip exist, modify the slip
-            if (newSlip.slipID == aSlip[i].slipID){
+            if (this.slipID.equalsIgnoreCase(aSlip[i].slipID)){
                 slipExist = true;
-                aSlip[i].dockID = newSlip.dockID;
-                aSlip[i].slipID = newSlip.slipID;
-                aSlip[i].width = newSlip.width;
-                aSlip[i].slipLength = newSlip.slipLength;
-                aSlip[i].customerPhoneNo = newSlip.customerPhoneNo;
+                aSlip[i].dockID = this.dockID;
+                aSlip[i].slipID = this.slipID;
+                aSlip[i].width = this.width;
+                aSlip[i].slipLength = this.slipLength;
+                aSlip[i].customerPhoneNo = this.customerPhoneNo;
             } // end if       
         } // end for
         // Stores the array in the file      
       PrintWriter outFile = new PrintWriter("data/slip.dat");
       for (int i = 0; i<linesCount; i++){
-            outFile.printf("%d %d %d %d %s%n",aSlip[i].dockID, aSlip[i].slipID, aSlip[i].width, aSlip[i].slipLength, aSlip[i].customerPhoneNo);
+            outFile.printf("%s %s %d %d %s%n",aSlip[i].dockID, aSlip[i].slipID, aSlip[i].width, aSlip[i].slipLength, aSlip[i].customerPhoneNo);
         }
       
       // Add new line of customer
       if (!slipExist)
-      outFile.printf("%d %d %d %d %s%n", newSlip.dockID, newSlip.slipID, newSlip.width, newSlip.slipLength, newSlip.customerPhoneNo);
+      outFile.printf("%s %s %d %d %s%n", this.dockID, this.slipID, this.width, this.slipLength, this.customerPhoneNo);
       
       // close the inFile and the outFile
      inFile.close();
      outFile.close();
     } // end method save
     
-    public static void remove(int slipID) throws FileNotFoundException{
+    public static void remove(String slipID) throws FileNotFoundException{
         Scanner inFile = new Scanner (new FileReader ("data/slip.dat"));
         
         // Declare an ArrayList of  objects
        ArrayList<Slip> aSlip = new ArrayList<Slip>(); 
        int i = 0;
        while (inFile.hasNext()) {
-           aSlip.add(i, new Slip(inFile.nextInt(), inFile.nextInt(), inFile.nextInt(), inFile.nextInt(), inFile.next()));
-           if (aSlip.get(i).slipID == slipID){
+           aSlip.add(i, new Slip(inFile.next(), inFile.next(), inFile.nextInt(), inFile.nextInt(), inFile.next()));
+           if (aSlip.get(i).slipID.equalsIgnoreCase(slipID)){
                 aSlip.remove(i);
                 i--;
             } // end if       
@@ -151,22 +151,22 @@ public class Slip {
                // Stores the array list in the file   
        PrintWriter outFile = new PrintWriter("data/slip.dat");
       for (int j = 0; j<aSlip.size(); j++)
-           outFile.printf("%d %d %d %d %s%n", aSlip.get(j).dockID, aSlip.get(j).slipID, aSlip.get(j).width, aSlip.get(j).slipLength, aSlip.get(j).customerPhoneNo);
+           outFile.printf("%s %s %d %d %s%n", aSlip.get(j).dockID, aSlip.get(j).slipID, aSlip.get(j).width, aSlip.get(j).slipLength, aSlip.get(j).customerPhoneNo);
      
        // close the inFile and the outFile
       inFile.close();
      outFile.close();
     } // end method remove
     
-    public static Slip getSlip(int slipID) throws FileNotFoundException{
+    public static Slip getSlip(String slipID) throws FileNotFoundException{
         Scanner inFile = new Scanner (new FileReader ("data/slip.dat"));
         Slip result = new Slip();  
         // Declare an ArrayList of  objects
        ArrayList<Slip> aSlip = new ArrayList<Slip>(); 
        int i = 0;
        while (inFile.hasNext()) {
-           aSlip.add(i, new Slip(inFile.nextInt(), inFile.nextInt(), inFile.nextInt(), inFile.nextInt(), inFile.next()));
-           if (aSlip.get(i).slipID == slipID){
+           aSlip.add(i, new Slip(inFile.next(), inFile.next(), inFile.nextInt(), inFile.nextInt(), inFile.next()));
+           if (aSlip.get(i).slipID.equalsIgnoreCase(slipID)){
                result.dockID = aSlip.get(i).dockID;
                result.slipID = aSlip.get(i).slipID;
                result.width = aSlip.get(i).width;
@@ -178,6 +178,20 @@ public class Slip {
        // close the inFile and the outFile
       inFile.close();
     return result;
-    } // end method remove
+    } // end method getSlip
+    
+    public static ArrayList getAllSlip() throws FileNotFoundException{
+        Scanner inFile = new Scanner (new FileReader ("data/slip.dat"));
+        // Declare an ArrayList of  objects
+       ArrayList<Slip> aSlip = new ArrayList<Slip>(); 
+       int i = 0;
+       while (inFile.hasNext()) {
+           aSlip.add(i, new Slip(inFile.next(), inFile.next(), inFile.nextInt(), inFile.nextInt(), inFile.next()));
+           i++;             
+        } // end while
+       // close the inFile and the outFile
+      inFile.close();
+    return aSlip;
+    } // end method getSlip
     
 }

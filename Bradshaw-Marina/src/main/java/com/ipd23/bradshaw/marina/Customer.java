@@ -188,7 +188,6 @@ public class Customer {
     
     public static ArrayList getAllCustomer() throws FileNotFoundException{
         Scanner inFile = new Scanner (new FileReader ("data/customer.dat"));
-        Customer result = new Customer();  
         // Declare an ArrayList of  objects
        ArrayList<Customer> aCustomer = new ArrayList<Customer>(); 
        int i = 0;
