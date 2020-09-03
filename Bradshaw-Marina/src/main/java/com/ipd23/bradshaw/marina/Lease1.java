@@ -1,6 +1,6 @@
 package com.ipd23.bradshaw.marina;
 
-public class Lease1 {
+public abstract class Lease1 {
 
             protected String leaseID;
             protected int numberOfDays;

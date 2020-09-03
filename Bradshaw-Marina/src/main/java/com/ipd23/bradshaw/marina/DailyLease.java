@@ -8,36 +8,27 @@ import java.time.LocalDate;
 
   class DailyLease extends Lease1{
 
-//	static final int NUMBER_OF_MONTHS = 12;
-//        static final int NUMBER_OF_DAYS = 365;
 
-	//private int leaseID;
-	//private String dateBeforeString;
-	protected double payDaily;
-	protected double amountDaily;
-//	protected double amountPaid;
-//	protected double balanceDue;
+	private double payDaily;
+	private double amountDaily;
+
 
 
 	public DailyLease() {
-		//this.leaseID = 0;
-		//this.dateBeforeString = "2017-05-24";
+		
 		super();
 		this.payDaily = 0;
 		this.amountDaily = 0;
-//		this.amountPaid = 0;
-//		this.balanceDue = 0;
+
 	}
 
 	public DailyLease(String leaseID, int numberOfDays, String phoneNo, int slipID, double payDaily, 
 			double amountDaily) {
-		//this.leaseID = leaseID;
-		//this.dateBeforeString = dateBeforeString;
+		
 		super(leaseID, numberOfDays, phoneNo, slipID);
 		this.payDaily = payDaily;
 		this.amountDaily = amountDaily;
-//		this.amountPaid = amountPaid;
-//		this.balanceDue = balanceDue;
+
 	}
 
 	
@@ -57,21 +48,6 @@ import java.time.LocalDate;
 		this.amountDaily = amountDaily;
 	}
 
-//	public double getAmountPaid() {
-//		return amountPaid;
-//	}
-//
-//	public void setAmountPaid(double amountPaid) {
-//		this.amountPaid = amountPaid;
-//	}
-
-//	public double getBalanceDue() {
-//		return balanceDue;
-//	}
-//
-//	public void setBalanceDue(double balanceDue) {
-//		this.balanceDue = balanceDue;
-//	}
 
 	
 		public void saveDailyLease() throws FileNotFoundException{

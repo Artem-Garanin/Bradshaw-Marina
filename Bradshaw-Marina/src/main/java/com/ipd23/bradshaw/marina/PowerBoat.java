@@ -40,9 +40,6 @@ public class PowerBoat extends Boat{
 		this.fuelType = fuelType;
 	}
 	
-public void  assignBoatToSlip() {
-	
-	}
 
 public void savePowerBoat() throws FileNotFoundException{
 		

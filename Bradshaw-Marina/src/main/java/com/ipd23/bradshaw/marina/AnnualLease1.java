@@ -13,10 +13,10 @@ import java.time.LocalDate;
 
 	//private int leaseID;
 	//private String dateBeforeString;
-	protected double payMonthly;
-	protected double amountAnnual;
-	protected double amountPaid;
-	protected double balanceDue;
+	private double payMonthly;
+	private double amountAnnual;
+	private double amountPaid;
+	private double balanceDue;
 
 
 	public AnnualLease1() {

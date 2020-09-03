@@ -1126,16 +1126,16 @@ public class BradshawMarinaTest  {
   } //end method getString
     
     public static void clearScreen() throws IOException, InterruptedException  { 
-        final String operatingSystem = System.getProperty("os.name");
-        if (operatingSystem.contains("Windows")){
-    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-    }  
-            else {
+//        final String operatingSystem = System.getProperty("os.name");
+//        if (operatingSystem.contains("Windows")){
+//    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+//    }  
+//            else {
             for(int i = 0; i < 1000; i++)
     {
         System.out.println("\b");
     }
-        }
+//        }
     } // end method clearScreen
     
 } //end class BradshawMarinaTest

@@ -1,5 +1,5 @@
 package com.ipd23.bradshaw.marina;
-public  class Boat {
+public abstract  class Boat {
 
 	protected String stateRegistraitionNo;
 	protected double boatLeangh;
